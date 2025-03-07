@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BMW repair</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/navbar-style.css?v=1.0}">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/home-style.css?v=1.0}">
+    <link rel="stylesheet" type="text/css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/responsive.css?v=1.0}">
+    <link rel="stylesheet" type="text/css" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css}">
+</head>
+<body>
+  <header>
+  <nav>
+    <div class="wrapper">
+      <div class="logo"><a href="#">M car Service</a></div>
+      <input type="radio" name="slider" id="menu-btn">
+      <input type="radio" name="slider" id="close-btn">
+      <ul class="nav-links">
+        <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+        
+        <li><a href="contact-us.html">За нас</a></li>
+       
+        <li>
+          <a href="#" class="desktop-item">Услуги</a>
+          <input type="checkbox" id="showMega">
+          <label for="showMega" class="mobile-item">Услуги</label>
+          <div class="mega-box">
+            <div class="content">
+              <div class="row">
+                <img src="images/service-main.jpg" alt="">
+              </div>
+              <div class="row">
+                <header>Често извършвани услуги</header>
+                <ul class="mega-links">
+                  <li><a href="servicesPages/oil_change.php">Смяна на масла и филтри</a></li>
+                  <li><a href="servicesPages/padsRotorsChange.php">Смяна на дискове и накладки</a></li>
+                  <li><a href="servicesPages/suspensionChange.php">Смяна на консумативи по окачването</a></li>
+                  <li><a href="servicesPages/a-c_service.php">Обслужване на климатици</a></li>
+                </ul>
+              </div>
+              <div class="row">
+                <header>Услуги за ел. и хибридни автомобили</header>
+                <ul class="mega-links">
+                  <li><a href="servicesPages/batterry.php">Диагностика и поддръжка на батериите</a></li>
+                  <li><a href="servicesPages/еEngineAndSystem.php">Сервиз на електрически двигател и системи за управление</a></li>
+                  <li><a href="servicesPages/chargingMaintance.php">Обслужване на системи за зареждане</a></li>        
+                  <li><a href="servicesPages/hybridSystemMaintance.php">Проверка на хибридната система</a></li>             
+                </ul>
+              </div>
+              <div class="row">
+                <header>Услуги с доп. запитване</header>
+                <ul class="mega-links">
+                  <li><a href="/mysite/DiplomnaRabota/tuningServices/exhaustSystem.html">Генерации</a></li>
+                  <li><a href="/mysite/DiplomnaRabota/tuningServices/tuning.html">Силов и визуален тунинг</a></li>
+                  <li><a href="/mysite/DiplomnaRabota/tuningServices/painting.html">Боядисване</a></li>
+                  <li><a href="/mysite/DiplomnaRabota/tuningServices/software.html">Софтуер</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li><a href="for-us.html">Контакти</a></li>
+        <li>
+          <a href="bookAService.html" class="desktop-item">Твоят профил</a>
+        </li>
+      </ul>
+      <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+    </div>
+  </nav>
+  <div class = "hero">
+    <div class ="hero-image">
+    <div class = hero-text>
+    <h1>Сервизни услуги за моделите на BMW, MINI и Rolls Royce</h1>
+    <h2>В сервиза се стараем да извършваме качествени услуги без излишно забавяне на клиента</h2>
+
+    <a class="for-us" href="contact-us.html">За нас</a>
+    <a class="services" href="chooseAService.html">Услуги</a>
+  </div>
+  </div>
+</div>
+</header>
+<main>
+  <div class= "info-container">
+    <div class = "info-cards-container">
+      <div class = "info">
+        <h1>Над 5000 доволни клиенти</h1>
+        <p>Tези хора ни се довериха и останаха доволни, довери ни се и ти.</p>
+      </div>
+      <div class = "info">
+        <h1>Голям екип от професионалисти</h1>
+        <p>Екипът ни е внимателно подбран по немски стандарт.</p>
+      </div>
+      <div class = "info">
+        <h1>Високотехнологично оборудване</h1>
+        <p>Разполагаме с всякакъв вид инструменти и машини, благодарение на, които извършваме услугите си с най-високо качество.</p>
+      </div>
+
+    </div>
+  </div>
+  <div class ="cards-container">
+  <div class="cards">
+    <div class = "card">
+      <div class = card-image>
+        <img src="images/1897-mobile_1597657236.avif" alt="">
+      </div>
+      <div class = card-text>
+        <h1>Oбслужване на двигатели</h1>
+        <p>Грижата за двигателя е от съществена важност за надеждността на автомобила.</p>
+        <a href="servicesPages/oil_change.php">Научи повече</a>
+      </div>
+    </div>
+    <div class = "card">
+      <div class = card-image>
+        <img src="images/bmw-335i-diagnostics.jpg" alt="">
+      </div>
+      <div class = card-text>
+        <h1>Чип тунинг и компютърна диагностика</h1>
+        <p>Чип тунингът е най-лесния начин да повишите мощноста на колата си. Чрез компютърната диагностика разбираме за трудно откриваемите проблеми по автомобила.</p>
+        <a href="tuningServices/software.html">Научи повече</a>
+      </div>
+    </div>
+    <div class = "card">
+      <div class = card-image>
+        <img src="images/GettyImages-453470317_1920x1080.avif" alt="">
+      </div>
+      <div class = card-text>
+        <h1>Автомобили под наем</h1>
+        <p>Наеми автомобил докато твоят е при нас.С тази услуга целим клиентът да не усеща лиспата на автомобила си.</p>
+        <a href="#">Научи повече</a>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+<footer>
+  <div class = "top-footer-container">
+  <div class = "footer-content">
+    <div class = "foot">
+      <h1>Контакти</h1>
+      <ul >
+        <li><a href ="#"><i class="fa-solid fa-phone"></i> +359 7799 333</a></li>
+        <li><a href ="#"><i class="fa-solid fa-envelope"></i> m_car_service@gmail.com</a></li>
+        <li><a href ="#"><i class="fa-solid fa-location-dot"></i> гр.София ул.Христо Ботев 3</a></li>
+        <li><a href ="#"><i class="fa-regular fa-calendar-days"></i>  Понеделник - Петък: 9:30 - 18:30</a></li>
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Oще</h1>
+      <ul>
+        <li><a href ="#">Блог</a></li>
+        <li><a href ="#">Рент а кар</a></li>
+        <li><a th:href="@{/register}">За нас</a></li>
+        
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Полезни връзки</h1>
+      <ul>
+        <li><a href ="#">Проекти</a></li>
+        <li><a href ="contact-us.html">Общи условия</a></li>
+        <li><a href ="for-us.html">Често задавани въпроси</a></li>
+      </ul>
+    </div>
+    <div class = "foot">
+      <h1>Социални мрежи</h1>
+      <ul>
+        <li><a href ="#"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+        <li><a href ="#"><i class="fa-brands fa-facebook"></i> Facebook</a></li>
+        <li><a href ="#"><i class="fa-brands fa-youtube"></i></a> Youtube</li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div class = "bottom-footer-container">
+    <div class ="bottom-content">
+      <p>&copy All rights reserved 2023.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

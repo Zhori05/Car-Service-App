@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/addCarStyle.css">
+    <title>AddCar</title>
+</head>
+<body>
+<div class = "container">
+    <form th:action="@{/addCar}" th:method="POST" th:object="${addCarRequest}" enctype="multipart/form-data">
+        <div class = "row">
+            <div class = "col-25">
+                <label for = "brand"></i>Марка</label>
+            </div>
+            <div class = "col-75">
+                <select id="brand" name="brand" th:field="*{brand}"   required>
+                    <option th:each="brand : ${T(app.car.model.Brand).values()}" th:value="${brand}" th:text="${#strings.capitalize(#strings.toLowerCase(brand))}"></option>
+                </select>
+                <p class="alert-warning" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></p>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-25">
+                <label for = "model"></i>Модел</label>
+            </div>
+            <div class = "col-75">
+                <input type="text" id="model" name="model"  data-addcar placeholder="Модел.." th:field="*{model}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></p>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-25">
+                <label for = "year"></i>Година</label>
+            </div>
+            <div class = "col-75">
+                <input type="number" id="year" name="year"  placeholder="Година.." data-addcar th:field="*{year}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-25">
+                <label for = "color"></i>Цвят</label>
+            </div>
+            <div class = "col-75">
+                <input type="text" id="color" name="color"  placeholder="Цвят.." data-addcar th:field="*{color}"required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></p>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-25">
+                <label for = "registration"></i>Регистрационен номер</label>
+            </div>
+            <div class = "col-75">
+                <input type="text" id="registration" name="registration" placeholder="Регистрационен номер.." data-addcar th:field="*{licensePlate}"required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('licensePlate')}" th:errors="*{licensePlate}"></p>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-25">
+                <label for = "kilometers"></i>Пробег</label>
+            </div>
+            <div class = "col-75">
+                <input type="number" id="kilometers" name="kilometers" placeholder="Пробег.." data-addcar   th:field="*{mileage}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('mileage')}" th:errors="*{mileage}"></p>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-25">
+                <label for = "picture" ></i>Снимка</label>
+            </div>
+            <div class = "col-75">
+                <input type="URL" id="picture" name="Img"  data-addcar  th:field="*{picture}" required>
+                <p class="alert-warning" th:if="${#fields.hasErrors('picture')}" th:errors="*{picture}"></p>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-25">
+                <label for = "button" ></i>Бутон</label>
+            </div>
+            <div class = "col-75">
+                <button type="submit" class="btn1 mt-4" id="button" name="submit" value="addUserCar">Добави</button>
+            </div>
+        </div>
+
+
+</form>
+</div>
+</body>
+</html>

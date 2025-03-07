@@ -1,0 +1,17 @@
+@media screen and (max-width: 600) {
+       
+    .cards{
+        flex-direction: column;
+        align-items: center;
+        padding: 2em;
+        
+    }
+    .card{
+        width: 50%;
+        
+    }
+    .info-cards-container{
+      flex-direction: column;
+      gap: 2em  ;
+    }
+}

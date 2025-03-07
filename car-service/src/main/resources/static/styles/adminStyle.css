@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.serviceContainer{
+display: none;
+}
+.mechanicsContainer{
+    display: none;
+}
+.appointmentsContainer{
+    display: none;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #cae5e8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    padding-top: 1em;
+}
+
+
+.container h3 {
+    text-align: center;
+}
+
+.form {
+    padding: 1em;
+    
+}
+
+.form form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    padding: 0.5em;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+.insertBtn{
+    background-color: #4caf50;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 15px; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background-color: #45a049;
+}
+
+.tableContainer{
+    width: 50%; 
+    margin: 0 auto;
+    
+}
+.editBtn {
+    position: relative;
+    overflow: hidden;
+  }
+
+.editTextArea {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+.editBtn:hover .editTextArea {
+    display: block;
+  }
+@media only screen and (max-width: 1295px) {
+    .form form {
+      flex-wrap: wrap;
+
+    }
+  }

@@ -1,0 +1,450 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+:root {
+  --white: #fff;
+  --main-color: #22368f;
+  --grey: #434141;
+  --light-grey: #aaa;
+}
+body {
+ 
+  transition: all 0.5s ease;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  z-index: 1000;
+  box-shadow: 0 0 2px var(--light-grey);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--main-color);
+}
+
+.sidebar {
+  background-color: var(--white);
+  width: 260px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 80px 20px;
+  z-index: 100;
+  overflow-y: scroll;
+  box-shadow: 0 0 1px var(--light-grey);
+  transition: all 0.5s ease;
+}
+.sidebar.close {
+  padding: 90px 1px;
+  width: 80px;
+}
+.mechanicName{
+  color: #343a40;
+  margin-bottom: 15px;
+  padding: 5px;
+  background-color: #0056b3;
+  text-align: center;
+  border-radius: 10px;
+  color: #f1f1f1;
+}
+.sidebar.close .mechanicName {
+  display: none;
+  
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+.menu_content {
+  position: relative;
+}
+.menu_title {
+  margin: 15px 0;
+  padding: 0 20px;
+  font-size: 18px;
+}
+.sidebar.close .menu_title {
+  padding: 6px 30px;
+}
+.menu_title::before {
+  color: var(--grey);
+  white-space: nowrap;
+}
+
+.sidebar.close .menu_title::before {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 18px;
+  border-radius: 12px;
+  background: var(--light-grey);
+}
+.menu_items {
+  padding: 0;
+  list-style: none;
+}
+.navlink_icon {
+  position: relative;
+  font-size: 22px;
+  min-width: 50px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 6px;
+}
+.navlink_icon::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: calc(100% + 100px);
+  left: -20px;
+}
+.navlink_icon:hover {
+  background: var(--main-color);
+}
+.sidebar .nav_link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 4px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--grey);
+  white-space: nowrap;
+}
+.sidebar.close .navlink {
+  display: none;
+}
+.nav_link:hover {
+  color: var(--white);
+  background: var(--main-color);
+}
+.sidebar.close .nav_link:hover {
+  background: var(--white);
+}
+
+.collapse_content {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  width: 260px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.collapse {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  left: 0;
+  justify-content: space-around;
+  padding: 18px 0;
+  text-align: center;
+  width: 100%;
+  color: var(--grey);
+  border-top: 1px solid var(--light-grey);
+  background-color: var(--white);
+}
+.collapse i {
+  font-size: 20px;
+}
+.collapse span {
+  font-size: 18px;
+}
+.sidebar.close .collapse_content {
+  width: 50px;
+  left: 15px;
+}
+.sidebar.close .collapse span {
+  display: none;
+}
+.sidebar.hoverable .collapse_sidebar {
+  display: none;
+}
+#sidebarOpen {
+  display: none;
+}
+.main-content{
+  background-image: url("../images/BMW_logo_(gray).svg.png");
+  background-size: 25%;
+  background-position-x: center;
+  background-position-y: center;
+  background-repeat: no-repeat;
+
+    position: relative;
+    background-color: #eee;
+    min-height: 100vh;
+    width: 100%;
+    padding-top: 5em;
+    margin-left:45px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #cae5e8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-top: 1em;
+}
+
+
+.container h3 {
+    text-align: center;
+}
+
+.form {
+    padding: 1em;
+    
+}
+
+.form form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    padding: 0.5em;
+}
+
+
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+.insertBtn{
+    background-color: #4caf50;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 15px; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+button:hover {
+    background-color: #45a049;
+}
+
+.tableContainer{
+ max-width: 1200px;
+    margin: 0 auto;
+    
+}
+.editBtn {
+    position: relative;
+    overflow: hidden;
+  }
+
+.editTextArea {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+.editBtn:hover .editTextArea {
+    display: block;
+  }
+
+  .tableContainer {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+    background-color: #faf0e6;
+   border-radius: 10px;
+    
+  }
+
+  .tableContainer h1{
+    text-align: center;
+    padding: 0.3em 0;
+    color: #3A3B3C;
+  }
+ 
+
+  .tableContainerContent {
+    overflow-x: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 4em;
+    z-index: 1;
+  }
+  #tableEndedAppointmets {
+    display: none; /* Скриване на таблиците по подразбиране */
+}
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    z-index: 1;
+  }
+
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .table thead th {
+    background-color: #343a40;
+    color: #fff;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* Цвят за четни редове */
+  }
+
+  .table tbody tr:nth-child(odd) {
+    background-color: #e9ecef; /* Цвят за нечетни редове */
+  }
+
+  .table tbody tr:hover {
+    background-color: #808181; /* Цвят при ховър */
+  }
+  .btn-primary {
+    background-color: #007bff;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    border: none;
+  }
+  .btn-danger {
+    background-color: red;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    border: none;
+  }
+
+  .btn-activate {
+    background-color: #4caf50;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    border: none;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  tbody a{
+
+    text-decoration: none;
+    color: white;
+  }
+  #containerForServices{
+    display: none;
+  }
+  #serviceTable{
+    display: none;
+  }
+  #containerForMechanic{
+    display: none;
+  }
+  #mechanicTable{
+    display: none;
+  }
+  #appointmentsContainer{
+    display: none;
+  }
+  #userTable{
+    display: none;
+  } 
+  #blockedUserTable{
+    display: none;
+  }
+
+  @media screen and (max-width: 768px) {
+    #sidebarOpen {
+      font-size: 25px;
+      display: block;
+      margin-right: 10px;
+      cursor: pointer;
+      color: var(--grey);
+    }
+    .sidebar.close {
+      left: -100%;
+     
+    }
+    .sidebar.close .collapse_content {
+      left: -100%;
+    }
+    .main-content{
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .table th, .table td {
+      padding: 8px;
+    }
+
+    .btn-primary {
+      font-size: 14px;
+    }
+    .serviceContainer{
+      padding: 1em;
+    }
+    .mechanicsContainer{
+      padding: 1em;
+    }
+  }
+@media only screen and (max-width: 1295px) {
+    .form form {
+      flex-wrap: wrap;
+
+    }
+  }
+  @media screen and (max-width: 580px) {
+    .table th, .table td {
+      padding: 8px; /* Намалете размера на отстъпите */
+      font-size: 19px; /* Намалете размера на шрифтовете */
+    }
+  
+    .btn-primary, .btn-danger {
+      padding: 8px 12px; /* Намалете размера на бутоните */
+      font-size: 10px; /* Намалете размера на шрифтовете на бутоните */
+    }
+  
+    /* Скриване на някои елементи или съкращаване на текста за по-малки екрани */
+    .navlink_icon::before {
+      width: calc(100% + 50px);
+    }
+    
+  }
+  
+

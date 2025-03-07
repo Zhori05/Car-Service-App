@@ -1,0 +1,249 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    width: 100%;
+}
+.header{
+    height: 4em;
+    background-color: lightgray;
+
+}
+.titleContainer{
+    margin: 0 auto;
+}
+.title{
+    margin: 0 auto;
+    padding: 0.5em;
+    text-align: center;
+    color: grey;
+}
+.user-img{
+    width: 50%;
+    border-radius: 100%;
+    border: 1px solid #eee;
+}
+.sidebar{
+    position: fixed; /* Променено от absolute на fixed */
+    top: 0;
+    bottom: 0; /* Добавено, за да покрие цялата височина на страницата */
+    left: 0;
+    width: 80px;
+    background-color: #12171e;
+    padding: .4rem .8rem;
+    transition: all 0.5s ease;
+}
+.sidebar.active ~ .main-content{
+    left: 300px;
+    width: calc(100% - 300px);
+}
+
+.sidebar.active{
+    width: 300px;
+
+}
+.sidebar #btn{
+    position: absolute;
+    color: #fff;
+    top: .4rem;
+    left: 50%;
+    font-size: 1.2rem;
+    line-height: 50px;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+.sidebar.active #btn{
+    left: 90%
+}
+.sidebar .top .logo{
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+
+}
+.sidebar.active.top.logo{
+    opacity: 1;
+}
+.top .logo i {
+    font-size: 2rem;
+    margin-right: 5px;
+}
+.user{
+    display: flex;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.user p{
+    color: #fff;
+    opacity: 1;
+    margin-left: 1rem;
+    
+}
+.bold{
+    font-weight: 600;
+}
+
+.sidebar p {
+    opacity: 0;
+}
+.sidebar.active p {
+    opacity: 1;
+}
+
+.sidebar ul li{
+    position: relative;
+    list-style-type: none;
+    max-height: 50px;
+    width: 90%;
+    margin: 0.8rem auto;
+    line-height: 50px;
+}
+
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 0.8rem;
+}
+.sidebar ul li a:hover{
+    background-color: #fff;
+    color: #12171e;
+}
+
+.sidebar ul li a i{
+    min-width: 50px;
+    text-align: center;
+    max-height: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+
+}
+.sidebar .nav-item{
+    opacity: 0;
+    max-height: 20px;
+}
+.sidebar.active .nav-item{
+    opacity: 1;
+    margin-bottom: 28px;
+}
+.sidebar ul li .tooltip{
+    position: absolute;
+    left: 125px;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 0.5rem 0.8rem rgba(0,0,0,0.2);
+    border-radius: .6rem;
+    padding: .4rem 1.2rem;
+    line-height: 1.8rem;
+    z-index: 1001;
+    opacity: 0;
+}
+.sidebar ul li:hover .tooltip{
+    opacity: 1;
+    background-color: white;
+
+}
+.sidebar.active ul li .tooltip{
+    display: none;
+}
+.main-content{
+    position: relative;
+    background-color: #eee;
+    min-height: 100vh;
+    z-index: 1;
+    top:0;
+    left:80px;
+    transition: all 0.5s ease;
+    width: calc(100% - 80px);
+    padding: 1rem;
+}
+.tableContainer {
+    
+    margin-top: 1.5em;
+    padding-top: 1em;
+    background-color: #faf0e6;
+  
+    
+  }
+
+  .tableContainer h1{
+    text-align: center;
+    padding: 0.3em 0;
+    color: #3A3B3C;
+  }
+ 
+
+  .tableContainerContent {
+    overflow-x: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 3em;
+    z-index: 1;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    z-index: 1;
+  }
+
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .table thead th {
+    background-color: #343a40;
+    color: #fff;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f8f9fa; /* Цвят за четни редове */
+  }
+
+  .table tbody tr:nth-child(odd) {
+    background-color: #e9ecef; /* Цвят за нечетни редове */
+  }
+
+  .table tbody tr:hover {
+    background-color: #808181; /* Цвят при ховър */
+  }
+  .btn-primary {
+    background-color: #007bff;
+    font-size: 1em;
+    color: #fff;
+    border-radius: 10px;
+    padding: 1em 1.5em;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  tbody a{
+
+    text-decoration: none;
+    color: white;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .table th, .table td {
+      padding: 8px;
+    }
+
+    .btn-primary {
+      font-size: 14px;
+    }
+  }

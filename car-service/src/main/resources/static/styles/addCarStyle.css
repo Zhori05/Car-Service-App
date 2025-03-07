@@ -1,0 +1,102 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+p{
+color:red;
+}
+input[type=text],[type = datetime-local],[type = number] ,[type = URL], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgb(168, 167, 167);
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    font-size: 14px;
+  }
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  } 
+
+  button{
+    font-size: 16px;
+    background-color: #6fbcf7;
+    padding: 10px 15px; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #58b1f5;
+}
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .tab {
+    display: none;
+  }
+ 
+  .step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+  }
+  
+  /* Mark the active step: */
+  .step.active {
+    opacity: 1;
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #04AA6D;
+  }
+
+  #prevBtn, #nextBtn{
+    margin-top: 1em;
+    float: right;
+  }
+
+  input.error,
+  select.error,
+  textarea.error {
+      border: 1px solid red;
+      outline: none;
+  }
+
+  
+
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }

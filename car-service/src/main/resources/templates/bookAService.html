@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/bookAService.css">
+  <script src="./js/multiStepForm2.js"></script>
+  <script src="./js/bookAService.js"></script>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/mechanicPage2.0.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>Document</title>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <i class="bx bx-menu" id="sidebarOpen"></i>
+      M Car Service
+    </div>
+  </nav>
+  <nav class="sidebar">
+    <div class="mechanic">
+      <p class="mechanicName">
+
+      </p>
+    </div>
+    <div class="menu_content">
+      <ul class="menu_items">
+        <li class="menu_item" style="background-color:white;">
+          <a href="index.html" class="nav_link">
+            <span class="navlink_icon">
+              <i class="bx bx-home"></i>
+            </span>
+            <span class="navlink">Начало</span>
+          </a>
+        </li>
+        <li class="menu_item">
+          <a href="#" class="nav_link add-appointment-link">
+            <span class="navlink_icon">
+              <i class='bx bx-calendar-plus'></i>
+            </span>
+            <span class="navlink">Запази час</span>
+          </a>
+        </li>
+        <li class="menu_item">
+          <a href="#" class="nav_link history-link">
+            <span class="navlink_icon">
+              <i class='bx bx-calendar-check'></i>
+            </span>
+            <span class="navlink">Сервизна книжка</span>
+          </a>
+        </li>
+
+      </ul>
+      <div class="collapse_content">
+        <div class="collapse expand_sidebar">
+          <span> Разгърни</span>
+          <i class="bx bx-chevron-right"></i>
+        </div>
+        <div class="collapse collapse_sidebar">
+          <span> Свий</span>
+          <i class="bx bx-chevron-left"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-content">
+    <div class="container">
+
+      <form method="post" id="myForm" enctype="multipart/form-data">
+        <div class="tab">
+          <div class="row">
+            <div class="col-25">
+              <label for="car"></i>Кола</label>
+            </div>
+            <div class="col-75">
+              <select id="car" name="car">
+
+                  <option value="-">
+
+                  </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <p class="ifAdd">Ако не си ползвал нашите услуги и нямаш коли в списъка можеш да си добавиш</p>
+            <a class="addCarBtn" th:href="@{addCar}">Добави колата си</a>
+          </div>
+        </div>
+
+        <div class="tab">
+          <div class="row">
+            <div class="col-25">
+              <label for="serviceName"><i class="fa-solid fa-wrench"></i> Услуга</label>
+            </div>
+            <div class="col-75">
+              <select id="service" name="service" required>
+
+                  <option value="-">
+
+                  </option>
+
+              </select>
+
+            </div>
+          </div>
+          <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-..."
+            crossorigin="anonymous"></script>
+
+
+
+          <div class="row">
+            <div class="col-25">
+              <label for="mechanicName"><i class="fa-solid fa-people-group"></i> Механик</label>
+            </div>
+
+            <div class="col-75">
+
+              <select id="mechanic" name="mechanicName">
+
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="datetime"><i class="fa-regular fa-calendar-days"></i> Дата и час</label>
+            </div>
+            <div class="col-75">
+              <input type="datetime-local" name="datetime" id="datetime" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="more"><i class="fa-solid fa-file-pen"></i> Допълнителна информация</label>
+            </div>
+            <div class="col-75">
+              <textarea id="more" name="more" placeholder="Напиши тук: " style="height:200px"></textarea>
+            </div>
+          </div>
+         
+
+        </div>
+        <button type="button" id="prevBtn">Предишна страница</button>
+        <button type="button" id="nextBtn">Напред</button>
+
+        <div style="text-align:center;margin-top:40px;">
+          <span class="step"></span>
+          <span class="step"></span>
+        </div>
+      </form>
+    </div>
+
+    <div class="Your_cars">
+      <form method="post" id="myForm" enctype="multipart/form-data">
+        <div class="tab1" style="display: block;">
+          <div class="row">
+            <div class="col-25">
+              <label for="car"></i>Кола</label>
+            </div>
+            <div class="col-75">
+              <select id="car_select" name="car">
+
+                  <option value="-">
+
+                  </option>
+
+              </select>
+            </div>
+          </div>
+
+          <div class="row1">
+            <p class="ifAdd">Ако не си ползвал нашите услуги и нямаш коли в списъка можеш да си добавиш</p>
+            <div class="carButtons">
+              <a class="addCarBtn" th:href="@{addCar}">Добави колата си</a>
+              <button type="button" id="ViewCarInfo">Информация за автомобила</button>
+            </div>
+        
+          </div>
+          <div id="carInfoContainer">
+            
+          </div>
+          
+      </form>
+
+    </div>
+
+    
+
+  </div>
+ 
+
+  <script src="js/multiStepForm2.js"></script>
+  <script src="js/clientPage.js"></script>
+
+</body>
+
+
+
+</html>
