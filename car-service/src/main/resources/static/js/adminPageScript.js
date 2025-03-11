@@ -19,12 +19,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+function hideAllNonAdminElements() {
+    const addAppointment = document.querySelector(".container");
+    const historyContainer = document.querySelector(".Your_cars");
 
+    addAppointment.style.display = "none";
+    historyContainer.style.display = "none";
+}
    
 
 
     addServiceLink.addEventListener("click", function(event) {
         event.preventDefault();
+           hideAllNonAdminElements();
         addServiceForm.style.display = "block";
         servicesTable.style.display = "none";
         addMechanicsForm.style.display = "none";
@@ -36,7 +43,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     allServicesLink.addEventListener("click", function(event) {
-        event.preventDefault();
+         event.preventDefault();
+            hideAllNonAdminElements();
         
         addServiceForm.style.display = "none";
         servicesTable.style.display = "block";
@@ -48,8 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     addMechanicLink.addEventListener("click", function(event) {
-        event.preventDefault();
-        
+       event.preventDefault();
+          hideAllNonAdminElements();
         addServiceForm.style.display = "none";
         servicesTable.style.display = "none";
         addMechanicsForm.style.display = "block";
@@ -60,7 +68,8 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
     allMechanicsLink.addEventListener("click", function(event) {
-    event.preventDefault();
+   event.preventDefault();
+      hideAllNonAdminElements();
     
     addServiceForm.style.display = "none";
     servicesTable.style.display = "none";
@@ -72,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 allAppointments.addEventListener("click", function(event) {
     event.preventDefault();
+       hideAllNonAdminElements();
     
     addServiceForm.style.display = "none";
     servicesTable.style.display = "none";
@@ -84,6 +94,7 @@ allAppointments.addEventListener("click", function(event) {
 });
 Users.addEventListener("click", function(event) {
     event.preventDefault();
+       hideAllNonAdminElements();
 
     usersTable.style.display ="block";
     addServiceForm.style.display = "none";
@@ -96,7 +107,8 @@ Users.addEventListener("click", function(event) {
 
 });
 blockedUsers.addEventListener("click", function(event) {
-    event.preventDefault();
+     event.preventDefault();
+        hideAllNonAdminElements();
 
     blockedUsersTable.style.display ="block";
     usersTable.style.display ="none";

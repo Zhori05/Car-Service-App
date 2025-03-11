@@ -4,9 +4,11 @@ import app.car.model.Car;
 import app.car.repository.CarRepository;
 import app.user.model.User;
 import app.web.dto.AddCarRequest;
-import org.aspectj.bridge.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CarService {
@@ -34,4 +36,9 @@ public class CarService {
                 .picture(addCarRequest.getPicture())
                 .build();
     }
+    public List<Car> getCarsByOwnerId(UUID ownerId) {
+        return carRepository.findByOwnerId(ownerId);
+    }
+
+
 }

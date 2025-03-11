@@ -71,17 +71,7 @@ public class IndexController {
         return new ModelAndView("redirect:/login");
     }
 
-    @GetMapping("/bookAService")
-    public ModelAndView getBookAServicePage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
 
-        User user = userService.getById(authenticationMetadata.getUserId());
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("bookAService");
-        modelAndView.addObject("user", user);
-
-        return modelAndView;
-    }
 
     @GetMapping("/addCar")
     public ModelAndView getAddCarPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {

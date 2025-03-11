@@ -40,20 +40,78 @@
             <span class="navlink">Начало</span>
           </a>
         </li>
-        <li class="menu_item">
-          <a href="#" class="nav_link add-appointment-link">
+        <li class="menu_item" >
+          <a href="/bookAService" class="nav_link add-appointment-link">
             <span class="navlink_icon">
               <i class='bx bx-calendar-plus'></i>
             </span>
             <span class="navlink">Запази час</span>
           </a>
         </li>
-        <li class="menu_item">
-          <a href="#" class="nav_link history-link">
+        <li class="menu_item"  >
+          <a href="/serviceBook" class="nav_link history-link" >
             <span class="navlink_icon">
               <i class='bx bx-calendar-check'></i>
             </span>
             <span class="navlink">Сервизна книжка</span>
+          </a>
+        </li>
+
+        <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+          <a href="#" class="nav_link add-service-link">
+            <span class="navlink_icon">
+              <i class='bx bx-add-to-queue'></i>
+            </span>
+            <span class="navlink">Добавяне на услуга</span>
+          </a>
+        </li>
+        <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+          <a href="#" class="nav_link all-services-link">
+            <span class="navlink_icon">
+              <i class='bx bx-list-ul'></i>
+            </span>
+            <span class="navlink">Услуги</span>
+          </a>
+        </li>
+        <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+          <a href="#" class="nav_link add-mechanic-link">
+            <span class="navlink_icon">
+              <i class='bx bx-add-to-queue'></i>
+            </span>
+            <span class="navlink">Добави механик</span>
+          </a>
+        </li>
+        <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+          <a href="#" class="nav_link mechanics-link">
+            <span class="navlink_icon">
+              <i class='bx bx-wrench'></i>
+            </span>
+            <span class="navlink">Механици</span>
+          </a>
+        </li>
+        <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+          <a href="#" class="nav_link appointments-link">
+            <span class="navlink_icon">
+              <i class='bx bx-calendar'></i>
+            </span>
+            <span class="navlink">Записани часове</span>
+          </a>
+        </li>
+        <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+          <a href="/users" class="nav_link users-link">
+            <span class="navlink_icon">
+            <i class='bx bx-user-circle' ></i>
+            </span>
+            <span class="navlink">Потребители</span>
+          </a>
+        </li>
+
+        <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+          <a href="#" class="nav_link blockedUsers-link">
+            <span class="navlink_icon">
+            <i class='bx bx-block'></i>
+            </span>
+            <span class="navlink">Блокирани потреб.</span>
           </a>
         </li>
 
@@ -83,9 +141,9 @@
             <div class="col-75">
               <select id="car" name="car">
 
-                  <option value="-">
 
-                  </option>
+                <option value="-">Избери кола</option>
+                <option th:each="car : ${userCars}" th:value="${car.id}" th:text="${car.brand + ' ' + car.model + ' ' + car.licensePlate}"></option>
               </select>
             </div>
           </div>
@@ -192,16 +250,283 @@
 
     </div>
 
-    
 
+
+
+  </div>
+  <div class="main-content">
+    <div class="serviceContainer" id="serviceContainer">
+      <div class="container" id="containerForServices">
+        <h3>Добавяне на услуга</h3>
+        <div class="form">
+          <form method="post">
+            <div class="form-group">
+              <label for="serviceName">Име на услугата:</label>
+              <input type="text" id="serviceName" name="serviceName" required>
+            </div>
+            <div class="form-group">
+              <label for="timeForExecution">Време за изпълнение (в минути):</label>
+              <input type="number" id="timeForExecution" name="timeForExecution" required>
+            </div>
+            <div class="form-group">
+              <label for="price">Цена (в лв.):</label>
+              <input type="number" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+              <label for="range">Направление:</label>
+              <input type="text" id="range" name="range" required>
+            </div>
+            <div class="buttonContainer">
+              <button type="submit" class="insertBtn" id="insertBtn">Добави услуга</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="tableContainer" id="serviceTable" >
+        <h1>Предлагани услуги</h1>
+        <div class = "tableClass" style="overflow-x:auto;">
+          <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Име на услугата</th>
+              <th scope="col">Време за изпълнение</th>
+              <th scope="col">Направление</th>
+              <th scope="col">Цена</th>
+              <th scope="col">Операции</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">' . $id . '</th>
+              <td class="nameDB">' . $name . '</td>
+              <td class="timeDB">' . $timeForExecution . ' мин</td>
+              <td class="rangeDB">' . $range . ' </td>
+              <td class="nameDB">' . $price . 'лв</td>
+              <td>
+
+
+                <button class="btn btn-danger">
+                  <a href="delete.php?deleteid=' . $id . '" class="text-light">
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+                  <div class="editTextArea">Изтрий</div>
+                </button>
+            </tr>;
+
+
+
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mechanicsContainer" id="mechanicsContainer">
+      <div class="container" id="containerForMechanic">
+        <h3>Добавяне на механик</h3>
+        <div class="form">
+          <form method="post">
+            <div class="form-group">
+              <label for="mechanicName">Име на механика:</label>
+              <input type="text" id="mechanicName" name="mechanicName" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Имейл:</label>
+              <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="logInCode">Код за влизане:</label>
+              <input type="text" id="logInCode" name="logInCode" required>
+            </div>
+            <div class="form-group">
+              <label for="specializedIn">Специалност:</label>
+              <input type="text" id="specializedIn" name="specializedIn" required>
+            </div>
+            <div class="buttonContainer">
+              <button type="submit" class="insertBtn" id="insertBtn">Добави механик</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+
+      <div class="tableContainer" id="mechanicTable">
+        <h1>Механици</h1>
+        <div class = "table" style="overflow-x:auto;">
+          <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Име на механика</th>
+              <th scope="col">Имейл</th>
+              <th scope="col">Специалност</th>
+              <th scope="col">Операции</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">' . $idMechanic . '</th>
+              <td class="nameDB">' . $name . '</td>
+              <td class="emailDB">' . $email . ' </td>
+              <td class="specializedInDB">' . $specializedIn . '</td>
+              <td>
+
+
+                <button class="btn btn-danger">
+                  <a href="delete.php?deleteidMechanic=' . $idMechanic . '" class="text-light">
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+                  <div class="editTextArea">Изтрий</div>
+                </button>
+            </tr>;
+
+
+
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="appointmentsContainer" id="appointmentsContainer">
+
+      <div class="tableContainer">
+        <h1>Записани часове</h1>
+        <div class = "table" style="overflow-x:auto;">
+          <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Име на собственика</th>
+              <th scope="col">Кола</th>
+              <th scope="col">Услуга</th>
+              <th scope="col">Име на механик</th>
+              <th scope="col">Начало</th>
+              <th scope="col">Край</th>
+              <th scope="col">Допълнителна информация</th>
+              <th scope="col">Операции</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">' . $idAppointment . '</th>
+              <td class="carOwnerDB">' . $carOwner . '</td>
+              <td class="carDB">' . $carBrand . ' ' . $carModel . '</td>
+              <td class="serviceNameDB">' . $serviceName . '</td>
+              <td class="mechanicNameDB">' . $mechanicName . '</td>
+              <td class="dateTimeDB">' . $dateTime . '</td>
+              <td class="endDateTimeDB">' . $endDateTime . '</td>
+              <td class="moreInfoDB">' . $moreInfo . '</td>
+
+              <td>
+
+                <button class="btn btn-danger">
+                  <a href="delete.php?deleteidAppointment=' . $idAppointment . '" class="text-light">
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
+                  <div class="editTextArea">Изтрий</div>
+                </button>
+            </tr>;
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="tableContainer" id="userTable">
+      <h1>Потребители</h1>
+      <div class = "table" style="overflow-x:auto;">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Име</th>
+            <th scope="col">Имейл</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Блокирай</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">' . $idUser . '</th>
+            <td class="nameDB">' . $name . '</td>
+            <td class="emailDB">' . $email . ' </td>
+            <td class="phoneDB">' . $phone . '</td>
+            <td>
+
+              <button class="btn btn-danger">
+                <a href="delete.php?deleteidUser=' . $idUser . '" class="text-light">
+                  <i class="bx bx-block"></i>
+                </a>
+                <div class="editTextArea">Блокирай</div>
+              </button>
+          </tr>;
+
+
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tableContainer" id="blockedUserTable">
+      <h1>Блокирани потребители</h1>
+      <div class = "table" style="overflow-x:auto;">
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Име</th>
+            <th scope="col">Имейл</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Активирай</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">' . $idUser . '</th>
+            <td class="nameDB">' . $name . '</td>
+            <td class="emailDB">' . $email . ' </td>
+            <td class="phoneDB">' . $phone . '</td>
+            <td>
+
+              <button class="btn btn-activate">
+                <a href="delete.php?activateIdUser=' . $idUser . '" class="text-light">
+                  <i class="bx bxs-user-plus"></i>
+                </a>
+                <div class="editTextArea">Активирай</div>
+              </button>
+          </tr>;
+
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </div>
   </div>
  
 
   <script src="js/multiStepForm2.js"></script>
   <script src="js/clientPage.js"></script>
+  <!-- <script src="js/adminPageScript.js"></script>-->
 
-</body>
+  </body>
 
 
 
-</html>
+  </html>

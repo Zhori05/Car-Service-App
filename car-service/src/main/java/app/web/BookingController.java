@@ -1,5 +1,7 @@
 package app.web;
 
+import app.car.model.Car;
+import app.car.service.CarService;
 import app.security.AuthenticationMetadata;
 import app.user.model.User;
 import app.user.service.UserService;
@@ -14,26 +16,33 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/bookAService")
+public class BookingController {
     private final UserService userService;
+    private final CarService carService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public BookingController(UserService userService, CarService carService) {
         this.userService = userService;
+        this.carService = carService;
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public ModelAndView getAllUsers(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+    public ModelAndView getBookAServicePage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
 
-        List<User> users = userService.getAllUsers();
+        User user = userService.getById(authenticationMetadata.getUserId());
+        List<Car> userCars = carService.getCarsByOwnerId(user.getId());
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("users");
-        modelAndView.addObject("users", users);
+        modelAndView.setViewName("bookAService");
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("userCars", userCars);
+
+
 
         return modelAndView;
     }
+
+
 
 }
