@@ -1,5 +1,5 @@
 package app.serviceForCars.model;
 
-public enum Specials {
+public enum Special {
     ENGINE, TYRES
 }

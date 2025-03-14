@@ -26,7 +26,7 @@ public class ServiceForCar {
     @Column(nullable = false)
     private double price;
     @Enumerated(EnumType.STRING)
-    private Specials special;
+    private Special special;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "serviceForCar")
     private List<Appointment> appointments;
