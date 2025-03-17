@@ -66,7 +66,7 @@
           </a>
         </li>
         <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
-          <a href="#" class="nav_link all-services-link">
+          <a href="/allServices" class="nav_link all-services-link">
             <span class="navlink_icon">
               <i class='bx bx-list-ul'></i>
             </span>
@@ -74,7 +74,7 @@
           </a>
         </li>
         <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
-          <a href="#" class="nav_link add-mechanic-link">
+          <a href="/addMechanic" class="nav_link add-mechanic-link">
             <span class="navlink_icon">
               <i class='bx bx-add-to-queue'></i>
             </span>
@@ -82,7 +82,7 @@
           </a>
         </li>
         <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
-          <a href="#" class="nav_link mechanics-link">
+          <a href="/allMechanics" class="nav_link mechanics-link">
             <span class="navlink_icon">
               <i class='bx bx-wrench'></i>
             </span>

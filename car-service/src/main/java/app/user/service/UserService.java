@@ -89,4 +89,18 @@ public class UserService implements UserDetailsService {
 
         return userRepository.findAll();
     }
+    @CacheEvict(value = "users", allEntries = true)
+    public void switchRole(UUID userId) {
+
+        User user = getById(userId);
+
+        if (user.getRole() == UserRole.USER) {
+            user.setRole(UserRole.ADMIN);
+        } else {
+            user.setRole(UserRole.USER);
+        }
+
+        userRepository.save(user);
+    }
+
 }

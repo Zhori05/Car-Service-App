@@ -10,6 +10,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceForCarService {
     private final ServiceForCarRepository serviceForCarRepository;
@@ -31,5 +33,9 @@ public class ServiceForCarService {
                 .price(addServiceRequest.getPrice())
                 .special(addServiceRequest.getSpecial())
                 .build();
+    }
+
+    public List<ServiceForCar> getAllServices() {
+        return serviceForCarRepository.findAll();
     }
 }

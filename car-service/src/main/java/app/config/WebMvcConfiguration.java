@@ -24,6 +24,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         // .anyRequest() - всички заявки, които не съм изброил
         // .authenticated() - за да имаш достъп, трябва да си аутентикиран
         http
+
                 .authorizeHttpRequests(matchers -> matchers
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/", "/register").permitAll()

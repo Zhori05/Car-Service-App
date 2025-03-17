@@ -1,6 +1,7 @@
 package app.web;
 
 import app.security.AuthenticationMetadata;
+import app.serviceForCars.model.ServiceForCar;
 import app.serviceForCars.service.ServiceForCarService;
 import app.user.model.User;
 import app.user.service.UserService;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
-@RequestMapping("/addService")
+
 public class ServiceController {
     private final UserService userService;
     private final ServiceForCarService serviceForCarService;
@@ -29,14 +32,14 @@ public class ServiceController {
         this.serviceForCarService = serviceForCarService;
     }
 
-    @GetMapping
+    @GetMapping("/addService")
     public ModelAndView getAddServicePage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
         ModelAndView modelAndView = new ModelAndView("addService");
         modelAndView.addObject("addServiceRequest", new AddServiceRequest()); // <-- Добавяме празен обект
 
         return modelAndView;
     }
-    @PostMapping
+    @PostMapping("/addService")
     public ModelAndView addServiceForCar(@ModelAttribute("addServiceRequest") @Valid AddServiceRequest addServiceRequest,
     BindingResult bindingResult, @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
         if (bindingResult.hasErrors()) {
@@ -47,6 +50,19 @@ public class ServiceController {
 
         return new ModelAndView("redirect:/bookAService");
 
+    }
+
+    @GetMapping("/allServices")
+    public ModelAndView getAllServicesPage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
+        User user = userService.getById(authenticationMetadata.getUserId());
+
+        List<ServiceForCar> serviceForCars = serviceForCarService.getAllServices();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("allServices");
+        modelAndView.addObject("allServices", serviceForCars);
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
 }

@@ -142,7 +142,7 @@
           <th scope="col">Име</th>
           <th scope="col">Имейл</th>
           <th scope="col">Телефон</th>
-          <th scope="col">Блокирай</th>
+          <th scope="col">Промени роля</th>
         </tr>
         </thead>
         <tbody>
@@ -153,12 +153,13 @@
           <td class="phoneDB" th:text="${curentUser.phoneNumber}"></td>
           <td>
 
-            <button class="btn btn-danger">
-              <a href="delete.php?deleteidUser=' . $idUser . '" class="text-light">
-                <i class="bx bx-block"></i>
-              </a>
-              <div class="editTextArea">Блокирай</div>
-            </button>
+              <form th:action="@{'/users/' + ${curentUser.id} + '/role'}" th:method="PUT">
+                <button class="btn btn-primary">
+               <p>Промени роля</p>
+                </button>
+              </form>
+
+          </td>
         </tr>;
 
 
