@@ -26,8 +26,7 @@
   </nav>
   <nav class="sidebar">
     <div class="mechanic">
-      <p class="mechanicName">
-
+      <p class="mechanicName"  th:text="${user.username}">
       </p>
     </div>
     <div class="menu_content">
@@ -107,11 +106,11 @@
         </li>
 
         <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
-          <a href="#" class="nav_link blockedUsers-link">
+          <a href="/notActiveUsers" class="nav_link blockedUsers-link">
             <span class="navlink_icon">
             <i class='bx bx-block'></i>
             </span>
-            <span class="navlink">Блокирани потреб.</span>
+            <span class="navlink">Не активни потреб.</span>
           </a>
         </li>
 
@@ -165,6 +164,7 @@
                   <option value="-">
 
                   </option>
+                <option th:each="serviceForCars : ${serviceForCars}" th:value="${serviceForCars.id}" th:text="${serviceForCars.name}"></option>
 
               </select>
 

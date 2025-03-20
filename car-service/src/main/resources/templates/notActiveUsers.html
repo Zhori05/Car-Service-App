@@ -10,7 +10,7 @@
   <script src="./js/multiStepForm2.js"></script>
   <script src="./js/bookAService.js"></script>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
- <link rel="stylesheet" href="styles/mechanicPage2.0.css">
+  <link rel="stylesheet" href="styles/mechanicPage2.0.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -142,33 +142,33 @@
           <th scope="col">Име</th>
           <th scope="col">Имейл</th>
           <th scope="col">Телефон</th>
-            <th scope="col">Роля</th>
+          <th scope="col">Роля</th>
           <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="curentUser : ${users}">
+        <tr th:each="curentUser : ${notActiveUsers}">
           <th scope="row" th:text="${curentUser.id}"></th>
           <td class="nameDB" th:text="${curentUser.username}"></td>
           <td class="emailDB" th:text="${curentUser.email}"></td>
           <td class="phoneDB" th:text="${curentUser.phoneNumber}"></td>
-            <td class="roleDB" th:text="${curentUser.role}"></td>
+          <td class="roleDB" th:text="${curentUser.role}"></td>
 
           <td>
 
-              <form th:action="@{'/users/' + ${curentUser.id} + '/role'}" th:method="PUT">
-                <button class="btn btn-primary">
-               <p>Промени роля</p>
-                </button>
-              </form>
-              <form th:action="@{'/users/' + ${curentUser.id} + '/status'}" th:method="PUT">
-                  <button class="btn btn-danger">
-                      <p>Промени статус</p>
-                  </button>
-              </form>
+            <form th:action="@{'/notActiveUsers/' + ${curentUser.id} + '/role'}" th:method="PUT">
+              <button class="btn btn-primary">
+                <p>Промени роля</p>
+              </button>
+            </form>
+            <form th:action="@{'/notActiveUsers/' + ${curentUser.id} + '/status'}" th:method="PUT">
+              <button class="btn btn-danger">
+                <p>Промени статус</p>
+              </button>
+            </form>
 
           </td>
-        </tr>;
+        </tr>
 
 
 

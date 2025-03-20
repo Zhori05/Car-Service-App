@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MechanicService {
@@ -34,5 +35,9 @@ public class MechanicService {
 
     public List<Mechanic> getAllMechanics() {
         return mechanicRepository.findAll();
+    }
+
+    public Mechanic getById(UUID userId) {
+        return  mechanicRepository.getById(userId);
     }
 }

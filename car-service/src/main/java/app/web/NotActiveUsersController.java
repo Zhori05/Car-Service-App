@@ -17,24 +17,24 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/notActiveUsers")
+public class NotActiveUsersController {
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public NotActiveUsersController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ModelAndView getActiveUsers(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+    public ModelAndView getNotActiveUsers(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
 
-        List<User> users = userService.getActiveUsers();
+        List<User> notActiveUsers = userService.getNotActiveUsers();
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("users");
-        modelAndView.addObject("users", users);
+        modelAndView.setViewName("notActiveUsers");
+        modelAndView.addObject("notActiveUsers", notActiveUsers);
 
         return modelAndView;
     }
@@ -43,7 +43,7 @@ public class UserController {
 
         userService.switchStatus(id);
 
-        return "redirect:/users";
+        return "redirect:/notActiveUsers";
     }
 
     @PutMapping("/{id}/role") // PUT /users/{id}/role
@@ -51,7 +51,7 @@ public class UserController {
 
         userService.switchRole(id);
 
-        return "redirect:/users";
+        return "redirect:/notActiveUsers";
     }
 
 }

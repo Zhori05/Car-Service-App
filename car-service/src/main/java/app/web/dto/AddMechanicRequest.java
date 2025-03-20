@@ -2,6 +2,7 @@ package app.web.dto;
 
 import app.mechanic.model.Specials;
 import app.serviceForCars.model.Special;
+import app.user.model.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,6 +25,8 @@ public class AddMechanicRequest {
     private String logInCode;
     @NotNull
     private Specials specialisedIn;
+
+    private UserRole role;
 
 
 }

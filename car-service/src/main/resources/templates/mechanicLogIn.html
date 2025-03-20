@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 
 <head>
@@ -80,20 +80,18 @@ body {
 
         <h4 class="text-center">За нас, колектива на "M Car Service", е чест да работим с теб </h4>
         
-        <form method="post" class="needs-validation">
+        <form method="post" class="needs-validation" th:action="@{/mechanicLogIn}" th:method="POST"  th:object="${loginMechanicRequest}">
             <div class="form-group was-validated">
                 <label class="form-label" for="email">Имейл</label>
-                <input class="form-control" type="email" name="email" id="email" required>
+                <input class="form-control" type="email" name="email" id="email"  th:field="*{email}" required>
                 <div class="invalid-feedback">
-                    Моля въведи имейла си
+
                 </div>
             </div>
             <div class="form-group was-validated">
                 <label class="form-label" for="logInCode">Код за достъп</label>
-                <input class="form-control" type="logInCode" name="logInCode" id="logInCode" required>
-                <div class="invalid-feedback">
-                    Въведи кода си за достъп, ако нямаш се свържи с началника си
-                </div>
+                <input class="form-control" type="logInCode" name="logInCode" id="logInCode" th:field="*{logInCode}" required>
+                <p class="alert-warning" th:if="${errorMessage}" th:text="${errorMessage}"></p>
             </div>
                 <button type="submit" class="btn1 mt-4" name="submit" value="login">Влизане</button>
         </form>

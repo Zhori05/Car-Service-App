@@ -89,6 +89,25 @@ public class UserService implements UserDetailsService {
 
         return userRepository.findAll();
     }
+    @Cacheable("users")
+    public List<User> getActiveUsers() {
+
+        return userRepository.findByIsActiveTrue();
+    }
+
+    @Cacheable("users")
+    public List<User> getAllMechanics() {
+        return userRepository.findByRole(UserRole.MECHANIC); // Връща само потребители с роля MECHANIC
+    }
+    @Cacheable("users")
+    public List<User> getAllBasicUsers() {
+        return userRepository.findByRole(UserRole.USER); // Връща само потребители с роля MECHANIC
+    }
+    @Cacheable("users")
+    public List<User> getAllNonMechanics() {
+        return userRepository.findAllByRoleNot(UserRole.MECHANIC);// Връща само потребители с роля MECHANIC
+    }
+
     @CacheEvict(value = "users", allEntries = true)
     public void switchRole(UUID userId) {
 
@@ -96,11 +115,52 @@ public class UserService implements UserDetailsService {
 
         if (user.getRole() == UserRole.USER) {
             user.setRole(UserRole.ADMIN);
-        } else {
+        }else if (user.getRole() == UserRole.MECHANIC){
+            user.setRole(UserRole.ADMIN);
+        }else {
             user.setRole(UserRole.USER);
         }
 
         userRepository.save(user);
     }
 
+    @CacheEvict(value = "addMechanic", allEntries = true)
+    public void switchMechanic(UUID userId) {
+
+        User mechanicUser = getById(userId);
+
+        if (mechanicUser.getRole() == UserRole.USER) {
+            mechanicUser.setRole(UserRole.MECHANIC);
+        } else {
+            mechanicUser.setRole(UserRole.USER);
+        }
+
+        userRepository.save(mechanicUser);
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    public void switchStatus(UUID userId) {
+
+        User user = getById(userId);
+
+        // НАЧИН 1:
+//        if (user.isActive()){
+//            user.setActive(false);
+//        } else {
+//            user.setActive(true);
+//        }
+
+        // false -> true
+        // true -> false
+        user.setActive(!user.isActive());
+        userRepository.save(user);
+    }
+
+
+
+    @Cacheable("users")
+    public List<User> getNotActiveUsers() {
+
+        return userRepository.findByIsActiveFalse();
+    }
 }

@@ -2,7 +2,11 @@ package app.web;
 
 import app.car.model.Car;
 import app.car.service.CarService;
+import app.mechanic.model.Mechanic;
+import app.mechanic.service.MechanicService;
 import app.security.AuthenticationMetadata;
+import app.serviceForCars.model.ServiceForCar;
+import app.serviceForCars.service.ServiceForCarService;
 import app.user.model.User;
 import app.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +24,13 @@ import java.util.List;
 public class BookingController {
     private final UserService userService;
     private final CarService carService;
+    private final ServiceForCarService serviceForCarService;
 
     @Autowired
-    public BookingController(UserService userService, CarService carService) {
+    public BookingController(UserService userService, CarService carService, ServiceForCarService serviceForCarService) {
         this.userService = userService;
         this.carService = carService;
+        this.serviceForCarService = serviceForCarService;
     }
 
     @GetMapping
@@ -32,16 +38,20 @@ public class BookingController {
 
         User user = userService.getById(authenticationMetadata.getUserId());
         List<Car> userCars = carService.getCarsByOwnerId(user.getId());
+        List<ServiceForCar> serviceForCars= serviceForCarService.getAllServices();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("bookAService");
         modelAndView.addObject("user", user);
         modelAndView.addObject("userCars", userCars);
+        modelAndView.addObject("serviceForCars", serviceForCars);
 
 
 
         return modelAndView;
     }
+
+
 
 
 

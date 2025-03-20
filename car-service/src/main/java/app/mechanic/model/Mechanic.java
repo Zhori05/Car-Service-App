@@ -1,6 +1,7 @@
 package app.mechanic.model;
 
 import app.appointment.model.Appointment;
+import app.user.model.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 
