@@ -101,11 +101,11 @@ public class UserService implements UserDetailsService {
     }
     @Cacheable("users")
     public List<User> getAllBasicUsers() {
-        return userRepository.findByRole(UserRole.USER); // Връща само потребители с роля MECHANIC
+        return userRepository.findByRole(UserRole.USER); // Връща само потребители с роля USER
     }
     @Cacheable("users")
     public List<User> getAllNonMechanics() {
-        return userRepository.findAllByRoleNot(UserRole.MECHANIC);// Връща само потребители с роля MECHANIC
+        return userRepository.findAllByRoleNot(UserRole.MECHANIC);
     }
 
     @CacheEvict(value = "users", allEntries = true)

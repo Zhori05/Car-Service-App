@@ -114,6 +114,31 @@
           </a>
         </li>
 
+        <li class="menu_item" th:if="${user.role.name() == 'MECHANIC'}">
+          <a href="#" class="nav_link day-work-link">
+          <span class="navlink_icon">
+          <i class='bx bx-time' ></i>
+          </span>
+            <span class="navlink">Работа за деня</span>
+          </a>
+        </li>
+        <li class="menu_item" th:if="${user.role.name() == 'MECHANIC'}">
+          <a href="#" class="nav_link week-work-link">
+    <span class="navlink_icon">
+    <i class='bx bx-calendar-week'></i>
+    </span>
+            <span class="navlink">Работа за седмица</span>
+          </a>
+        </li>
+        <li class="menu_item" th:if="${user.role.name() == 'MECHANIC'}">
+          <a href="#" class="nav_link services-link">
+        <span class="navlink_icon">
+        <i class='bx bx-calendar-check'></i>
+        </span>
+            <span class="navlink">Свършена работа</span>
+          </a>
+        </li>
+
       </ul>
       <div class="collapse_content">
         <div class="collapse expand_sidebar">
@@ -162,7 +187,6 @@
               <select id="service" name="service" required>
 
                   <option value="-">
-
                   </option>
                 <option th:each="serviceForCars : ${serviceForCars}" th:value="${serviceForCars.id}" th:text="${serviceForCars.name}"></option>
 
@@ -183,7 +207,9 @@
             <div class="col-75">
 
               <select id="mechanic" name="mechanicName">
-
+                <option value="-">
+                </option>
+                <option th:each="mechanics : ${mechanics}" th:value="${mechanics.id}" th:text="${mechanics.username}"></option>
               </select>
             </div>
           </div>

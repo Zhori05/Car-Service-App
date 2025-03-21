@@ -39,12 +39,14 @@ public class BookingController {
         User user = userService.getById(authenticationMetadata.getUserId());
         List<Car> userCars = carService.getCarsByOwnerId(user.getId());
         List<ServiceForCar> serviceForCars= serviceForCarService.getAllServices();
+        List<User> mechanics= userService.getAllMechanics();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("bookAService");
         modelAndView.addObject("user", user);
         modelAndView.addObject("userCars", userCars);
         modelAndView.addObject("serviceForCars", serviceForCars);
+        modelAndView.addObject("mechanics", mechanics);
 
 
 
