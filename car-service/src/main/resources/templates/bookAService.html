@@ -115,7 +115,7 @@
         </li>
 
         <li class="menu_item" th:if="${user.role.name() == 'MECHANIC'}">
-          <a href="#" class="nav_link day-work-link">
+          <a href="/todayMechanicWork" class="nav_link day-work-link">
           <span class="navlink_icon">
           <i class='bx bx-time' ></i>
           </span>
@@ -123,7 +123,7 @@
           </a>
         </li>
         <li class="menu_item" th:if="${user.role.name() == 'MECHANIC'}">
-          <a href="#" class="nav_link week-work-link">
+          <a href="/weekMechanicWork" class="nav_link week-work-link">
     <span class="navlink_icon">
     <i class='bx bx-calendar-week'></i>
     </span>
@@ -156,14 +156,14 @@
   <div class="main-content">
     <div class="container">
 
-      <form method="post" id="myForm" enctype="multipart/form-data">
+      <form th:action="@{/bookAService}" th:method="POST" th:object="${appointmentRequest}" id="myForm" enctype="multipart/form-data">
         <div class="tab">
           <div class="row">
             <div class="col-25">
               <label for="car"></i>Кола</label>
             </div>
             <div class="col-75">
-              <select id="car" name="car">
+              <select id="car" name="car"  th:field="*{car}">
 
 
                 <option value="-">Избери кола</option>
@@ -184,7 +184,7 @@
               <label for="serviceName"><i class="fa-solid fa-wrench"></i> Услуга</label>
             </div>
             <div class="col-75">
-              <select id="service" name="service" required>
+              <select id="service" name="service" th:field="*{serviceForCars}" required>
 
                   <option value="-">
                   </option>
@@ -206,7 +206,7 @@
 
             <div class="col-75">
 
-              <select id="mechanic" name="mechanicName">
+              <select id="mechanic" name="mechanicName" th:field="*{mechanic}">
                 <option value="-">
                 </option>
                 <option th:each="mechanics : ${mechanics}" th:value="${mechanics.id}" th:text="${mechanics.username}"></option>
@@ -218,7 +218,7 @@
               <label for="datetime"><i class="fa-regular fa-calendar-days"></i> Дата и час</label>
             </div>
             <div class="col-75">
-              <input type="datetime-local" name="datetime" id="datetime" required>
+              <input type="datetime-local" name="datetime" id="datetime" th:field="*{start}" required>
             </div>
           </div>
           <div class="row">
@@ -226,7 +226,7 @@
               <label for="more"><i class="fa-solid fa-file-pen"></i> Допълнителна информация</label>
             </div>
             <div class="col-75">
-              <textarea id="more" name="more" placeholder="Напиши тук: " style="height:200px"></textarea>
+              <textarea id="more" name="more" placeholder="Напиши тук: " style="height:200px" th:field="*{moreInfo}"></textarea>
             </div>
           </div>
          

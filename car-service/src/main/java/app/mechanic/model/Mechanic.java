@@ -32,7 +32,6 @@ public class Mechanic {
     @Enumerated(EnumType.STRING)
     private Specials specialisedIn;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "mechanic")
-    private List<Appointment>appointments;
+
 
 }

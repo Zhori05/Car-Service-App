@@ -1,5 +1,7 @@
 package app.web;
 
+import app.appointment.model.Appointment;
+import app.appointment.service.AppointmentService;
 import app.mechanic.model.Mechanic;
 import app.mechanic.service.MechanicService;
 import app.security.AuthenticationMetadata;
@@ -33,13 +35,15 @@ import java.util.UUID;
 @Controller
 public class MechanicController {
     private final UserService userService;
+    private final AppointmentService  appointmentService;
 
 
 
     @Autowired
-    public MechanicController(UserService userService) {
+    public MechanicController(UserService userService, AppointmentService appointmentService) {
         this.userService = userService;
 
+        this.appointmentService = appointmentService;
     }
 
     @GetMapping("/addMechanic")
@@ -87,6 +91,29 @@ public class MechanicController {
         userService.switchMechanic(id);
 
         return "redirect:/allMechanics";
+    }
+
+    @GetMapping("/todayMechanicWork")
+    public ModelAndView getWorkForToday(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
+        User user = userService.getById(authenticationMetadata.getUserId());
+        List<Appointment> todayMechanicWork = appointmentService.getTodayAppointmentsForMechanic(user.getId());
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("todayMechanicWork");
+        modelAndView.addObject("todayMechanicWork", todayMechanicWork);
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+    @GetMapping("/weekMechanicWork")
+    public ModelAndView getWorkForThisWeek(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
+        User user = userService.getById(authenticationMetadata.getUserId());
+        List<Appointment> weekMechanicWork = appointmentService.getAppointmentsForNextWeekByMechanic(user.getId());
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("weekMechanicWork");
+        modelAndView.addObject("weekMechanicWork", weekMechanicWork);
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 
 

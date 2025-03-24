@@ -23,16 +23,18 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-
-
     @ManyToOne
     private User owner;
+
     @ManyToOne
     private Car car;
+
     @ManyToOne
     private ServiceForCar serviceForCar;
+
     @ManyToOne
-    private Mechanic mechanic;
+    private User mechanic;
+
     @Column(nullable = false)
     private LocalDateTime start;
 

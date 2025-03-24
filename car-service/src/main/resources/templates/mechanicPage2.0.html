@@ -92,28 +92,7 @@
       </tr> 
     </thead>
     <tbody>
-   <!-- <?php
-$currentDate = date("Y-m-d");
-$sql = "SELECT a.id, u.name AS carOwner, c.brand, c.model, a.serviceName, a.mechanicName, a.dateTime, a.endDateTime, a.moreInfo
-        FROM `apointments` AS a
-        INNER JOIN `users` AS u ON a.idCarOwner = u.iduser
-        INNER JOIN `cars` AS c ON a.idcar = c.car_id
-        WHERE a.mechanicName = ? AND DATE(a.dateTime) = ?";
-$stmt = $connection->prepare($sql);
-$stmt->execute([$mechanic['name'], $currentDate]);
-$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-if ($result) {
-    foreach ($result as $row) {
-        $idAppointment = $row['id'];
-        $carOwner = $row['carOwner'];
-        $carBrand = $row['brand'];
-        $carModel = $row['model'];
-        $serviceName = $row['serviceName'];
-        $mechanicName = $row['mechanicName'];
-        $dateTime = $row['dateTime'];
-        $endDateTime = $row['endDateTime'];
-        $moreInfo = $row['moreInfo'];
-        echo '<tr>
+   <tr>
                 <th scope="row">' . $idAppointment . '</th>
                 <td class="carOwnerDB">' . $carOwner . '</td>
                 <td class="carDB">' . $carBrand . ' ' . $carModel . '</td>
@@ -130,16 +109,7 @@ if ($result) {
             </button>
                    
                 </td>
-            </tr>';
-    }
-} else {
-  echo "<p> <font color=green> За днес нямаш часове</font> </p>";
-}
-?>
--->
-  
-    
-     
+            </tr>
     </tbody>
   </table>
   </div>

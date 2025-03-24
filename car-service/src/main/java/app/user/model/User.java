@@ -1,9 +1,11 @@
 package app.user.model;
 
+import app.appointment.model.Appointment;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Builder
@@ -45,6 +47,13 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime updatedOn;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "mechanic")
+    private List<Appointment> mechanicAppointments;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+    private List<Appointment> userAppointments;
+
 
 
 }
