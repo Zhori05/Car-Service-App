@@ -229,11 +229,20 @@
               <textarea id="more" name="more" placeholder="Напиши тук: " style="height:200px" th:field="*{moreInfo}"></textarea>
             </div>
           </div>
-         
+
+
+
 
         </div>
+
         <button type="button" id="prevBtn">Предишна страница</button>
         <button type="button" id="nextBtn">Напред</button>
+       <br>
+        <br>
+        <div th:if="${error}" class="alert alert-danger" th:text="${error}" style="color:red;"></div>
+        <div th:if="${param.success}" class="alert alert-success">
+          Успешно запазихте час за сервиз!
+        </div>
 
         <div style="text-align:center;margin-top:40px;">
           <span class="step"></span>

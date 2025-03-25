@@ -63,15 +63,28 @@ public class BookingController {
         return modelAndView;
     }
     @PostMapping
-    public ModelAndView addAppointment(@ModelAttribute("appointmentRequest") @Valid AppointmentRequest appointmentRequest, BindingResult bindingResult, @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
+    public ModelAndView addAppointment(@ModelAttribute("appointmentRequest") @Valid AppointmentRequest appointmentRequest,
+                                       BindingResult bindingResult,
+                                       @AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
         if (bindingResult.hasErrors()) {
-            return new ModelAndView("bookAService");
+            return getBookAServicePageWithErrors(authenticationMetadata, bindingResult);
         }
 
-        User user = userService.getById(authenticationMetadata.getUserId());
-        appointmentService.addAppointment(appointmentRequest,user);
+        try {
+            User user = userService.getById(authenticationMetadata.getUserId());
+            appointmentService.addAppointment(appointmentRequest, user);
+            return new ModelAndView("redirect:/bookAService?success=true");
+        } catch (IllegalArgumentException e) {
+            ModelAndView modelAndView = getBookAServicePage(authenticationMetadata);
+            modelAndView.addObject("error", e.getMessage());
+            return modelAndView;
+        }
+    }
 
-        return new ModelAndView("redirect:/bookAService");
+    private ModelAndView getBookAServicePageWithErrors(AuthenticationMetadata authenticationMetadata, BindingResult bindingResult) {
+        ModelAndView modelAndView = getBookAServicePage(authenticationMetadata);
+        modelAndView.addObject("org.springframework.validation.BindingResult.appointmentRequest", bindingResult);
+        return modelAndView;
     }
 
 

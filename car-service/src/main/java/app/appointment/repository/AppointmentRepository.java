@@ -25,4 +25,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
             "ORDER BY a.start ASC", nativeQuery = true)
     List<Appointment> findAppointmentsForNextWeekByMechanic(
             @Param("mechanicId") UUID mechanicId);
+
+    List<Appointment> findByMechanicIdAndIsFinishedFalse(UUID mechanicId);
 }
