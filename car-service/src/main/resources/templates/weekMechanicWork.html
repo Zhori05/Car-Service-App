@@ -180,11 +180,15 @@
           <td class="endDateTimeDB"th:text="${currentAppointment.finish}"></td>
           <td class="moreInfoDB"th:text="${currentAppointment.moreInfo}"></td>
           <td>
-            <button class="btn btn-primary">
-              <a href="serviceComplete.php?id=' . $idAppointment . '">
-                <div class="editTextArea">Завърши</div>
-              </a>
-            </button>
+
+
+
+            <form th:action="@{'/weekMechanicWork/' + ${currentAppointment.id} + '/status'}" th:method="PUT">
+              <button class="btn btn-danger">
+                <p>Завърши</p>
+              </button>
+            </form>
+
 
           </td>
         </tr>

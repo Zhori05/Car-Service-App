@@ -15,6 +15,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
     @Query("SELECT a FROM Appointment a " +
             "WHERE a.mechanic.id = :mechanicId " +
             "AND DATE(a.start) = CURRENT_DATE " +
+            "AND a.isFinished = false " +
             "ORDER BY a.start ASC")
     List<Appointment> findTodayAppointmentsByMechanic(
             @Param("mechanicId") UUID mechanicId);
@@ -22,9 +23,17 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
     @Query(value = "SELECT * FROM appointment a " +
             "WHERE a.mechanic_id = :mechanicId " +
             "AND DATE(a.start) BETWEEN CURRENT_DATE AND DATE_ADD(CURRENT_DATE, INTERVAL 6 DAY) " +
+            "AND a.is_finished = false " +
             "ORDER BY a.start ASC", nativeQuery = true)
     List<Appointment> findAppointmentsForNextWeekByMechanic(
             @Param("mechanicId") UUID mechanicId);
 
     List<Appointment> findByMechanicIdAndIsFinishedFalse(UUID mechanicId);
+
+    List<Appointment> findByMechanicIdAndIsFinishedTrue(UUID mechanicId);
+
+    @Query("SELECT a FROM Appointment a " +
+            "WHERE a.car.id = :carId " +
+            "ORDER BY a.start ASC")
+    List<Appointment> findAppointmentsForCar(UUID carId);
 }

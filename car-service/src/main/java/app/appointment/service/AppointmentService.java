@@ -1,5 +1,6 @@
 package app.appointment.service;
 
+import app.Exception.DomainException;
 import app.appointment.model.Appointment;
 import app.appointment.repository.AppointmentRepository;
 import app.car.model.Car;
@@ -9,6 +10,7 @@ import app.web.dto.AppointmentRequest;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -138,5 +140,35 @@ public class AppointmentService {
 
     public List<Appointment> findByMechanicIdAndIsFinishedFalse(UUID mechanicId) {
         return appointmentRepository.findByMechanicIdAndIsFinishedFalse(mechanicId);
+    }
+    public List<Appointment> findByMechanicIdAndIsFinishedTrue(UUID mechanicId) {
+        return appointmentRepository.findByMechanicIdAndIsFinishedTrue(mechanicId);
+    }
+    public List<Appointment> getAppointmentsForCar(UUID carId) {
+        return appointmentRepository.findAppointmentsForCar(carId);
+    }
+
+
+    @CacheEvict( value = {"todayMechanicWork", "weekMechanicWork"}, allEntries = true)
+    public void switchStatus(UUID id) {
+
+       Appointment appointment = getById(id);
+
+        // НАЧИН 1:
+//        if (user.isActive()){
+//            user.setActive(false);
+//        } else {
+//            user.setActive(true);
+//        }
+
+        // false -> true
+        // true -> false
+        appointment.setFinished(!appointment.isFinished());
+        appointmentRepository.save(appointment);
+    }
+
+
+    private Appointment getById(UUID appointmentId) {
+        return appointmentRepository.findById(appointmentId).orElseThrow(() -> new DomainException("Appointment with id [%s] does not exist.".formatted(appointmentId)));
     }
 }

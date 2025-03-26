@@ -1,5 +1,7 @@
 package app.web;
 
+import app.appointment.model.Appointment;
+import app.appointment.service.AppointmentService;
 import app.car.model.Car;
 import app.car.service.CarService;
 import app.security.AuthenticationMetadata;
@@ -19,11 +21,13 @@ import java.util.List;
 public class ServiceBookController {
     private final UserService userService;
     private final CarService carService;
+    private  final AppointmentService appointmentService;
 
     @Autowired
-    public ServiceBookController(UserService userService, CarService carService) {
+    public ServiceBookController(UserService userService, CarService carService, AppointmentService appointmentService) {
         this.userService = userService;
         this.carService = carService;
+        this.appointmentService = appointmentService;
     }
 
     @GetMapping
@@ -31,6 +35,7 @@ public class ServiceBookController {
 
         User user = userService.getById(authenticationMetadata.getUserId());
         List<Car> userCars = carService.getCarsByOwnerId(user.getId());
+
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("serviceBook");
@@ -41,5 +46,6 @@ public class ServiceBookController {
 
         return modelAndView;
     }
+
 
 }

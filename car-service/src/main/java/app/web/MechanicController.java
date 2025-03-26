@@ -116,6 +116,34 @@ public class MechanicController {
         return modelAndView;
     }
 
+    @PutMapping("todayMechanicWork/{id}/status")
+    public String switchTodayAppointmentStatus(@PathVariable UUID id) {
+
+        appointmentService.switchStatus(id);
+
+        return "redirect:/todayMechanicWork";
+    }
+
+    @PutMapping("weekMechanicWork/{id}/status")
+    public String switchWeekAppointmentStatus(@PathVariable UUID id) {
+
+        appointmentService.switchStatus(id);
+
+        return "redirect:/weekMechanicWork";
+    }
+
+    @GetMapping("/finishedWorkMechanic")
+    public ModelAndView getFinishedWork(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
+        User user = userService.getById(authenticationMetadata.getUserId());
+        List<Appointment> finishedWorkMechanic = appointmentService.findByMechanicIdAndIsFinishedTrue(user.getId());
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("finishedWorkMechanic");
+        modelAndView.addObject("finishedWorkMechanic", finishedWorkMechanic);
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
 
 
 }

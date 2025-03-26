@@ -96,7 +96,7 @@ public class IndexController {
         User user = userService.getById(authenticationMetadata.getUserId());
         carService.addCar(addCarRequest, user);
 
-        return new ModelAndView("redirect:/bookAService");
+        return new ModelAndView( );
     }
 
 }

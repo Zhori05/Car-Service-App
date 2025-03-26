@@ -166,11 +166,10 @@
                     <th scope="col">Начало</th>
                     <th scope="col">Край</th>
                     <th scope="col">Допълнителна информация</th>
-                    <th scope="col">Операции</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="currentAppointment : ${todayMechanicWork}">
+                <tr th:each="currentAppointment : ${finishedWorkMechanic}">
                     <th scope="row" th:text="${currentAppointment.id}"></th>
                     <td class="carOwnerDB" th:text="${currentAppointment.owner.username}"></td>
                     <td class="carDB"th:text="${currentAppointment.car.model}"></td>
@@ -179,18 +178,6 @@
                     <td class="dateTimeDB"th:text="${currentAppointment.start}"></td>
                     <td class="endDateTimeDB"th:text="${currentAppointment.finish}"></td>
                     <td class="moreInfoDB"th:text="${currentAppointment.moreInfo}"></td>
-                    <td>
-
-
-
-                        <form th:action="@{'/todayMechanicWork/' + ${currentAppointment.id} + '/status'}" th:method="PUT">
-                            <button class="btn btn-danger">
-                                <p>Завърши</p>
-                            </button>
-                        </form>
-
-
-                    </td>
                 </tr>
                 </tbody>
             </table>

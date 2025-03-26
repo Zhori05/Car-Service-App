@@ -159,8 +159,37 @@
 
         </div>
         <div id="carInfoContainer">
+          <div class="tableContainer" id="serviceBook">
+            <h1>Сервизна история</h1>
+            <div class="tableContainerContent">
+              <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Кола</th>
+                  <th scope="col">Услуга</th>
+                  <th scope="col">Име на механик</th>
+                  <th scope="col">Начало</th>
+                  <th scope="col">Край</th>
+                  <th scope="col">Допълнителна информация</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="currentAppointment : ${userCars}">
+                  <th scope="row" th:text="${currentAppointment.id}"></th>
+                  <td class="carDB"th:text="${currentAppointment.car.model}"></td>
+                  <td class="serviceNameDB" th:text="${currentAppointment.serviceForCar.name}"></td>
+                  <td class="mechanicNameDB" th:text="${currentAppointment.mechanic.username}"></td>
+                  <td class="dateTimeDB"th:text="${currentAppointment.start}"></td>
+                  <td class="endDateTimeDB"th:text="${currentAppointment.finish}"></td>
+                  <td class="moreInfoDB"th:text="${currentAppointment.moreInfo}"></td>
 
-        </div>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
 
     </form>
 

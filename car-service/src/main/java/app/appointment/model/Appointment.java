@@ -41,8 +41,9 @@ public class Appointment {
     @Column(nullable = false)
     private LocalDateTime finish;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "is_finished")
     private boolean isFinished;
 
     private String moreInfo;
+
 }
