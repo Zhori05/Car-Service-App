@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -130,6 +131,10 @@ public class AppointmentService {
                 .build();
     }
 
+    public List<Appointment> getAppointments() {
+        return appointmentRepository.findAll();
+    }
+
     public List<Appointment> getTodayAppointmentsForMechanic(UUID mechanicId) {
         return appointmentRepository.findTodayAppointmentsByMechanic(mechanicId);
     }
@@ -141,18 +146,18 @@ public class AppointmentService {
     public List<Appointment> findByMechanicIdAndIsFinishedFalse(UUID mechanicId) {
         return appointmentRepository.findByMechanicIdAndIsFinishedFalse(mechanicId);
     }
+
     public List<Appointment> findByMechanicIdAndIsFinishedTrue(UUID mechanicId) {
         return appointmentRepository.findByMechanicIdAndIsFinishedTrue(mechanicId);
     }
-    public List<Appointment> getAppointmentsForCar(UUID carId) {
-        return appointmentRepository.findAppointmentsForCar(carId);
-    }
 
 
-    @CacheEvict( value = {"todayMechanicWork", "weekMechanicWork"}, allEntries = true)
+
+
+    @CacheEvict(value = {"todayMechanicWork", "weekMechanicWork"}, allEntries = true)
     public void switchStatus(UUID id) {
 
-       Appointment appointment = getById(id);
+        Appointment appointment = getById(id);
 
         // НАЧИН 1:
 //        if (user.isActive()){
@@ -171,4 +176,12 @@ public class AppointmentService {
     private Appointment getById(UUID appointmentId) {
         return appointmentRepository.findById(appointmentId).orElseThrow(() -> new DomainException("Appointment with id [%s] does not exist.".formatted(appointmentId)));
     }
+    public List<Appointment> getCompletedAppointmentsByCarId(UUID carId) {
+        return appointmentRepository.findCompletedAppointmentsForCar(carId);
+    }
+
+
+
+
+
 }

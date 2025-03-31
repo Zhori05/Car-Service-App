@@ -1,5 +1,7 @@
 package app.web;
 
+import app.appointment.model.Appointment;
+import app.appointment.service.AppointmentService;
 import app.security.AuthenticationMetadata;
 import app.user.model.User;
 import app.user.service.UserService;
@@ -20,10 +22,12 @@ import java.util.UUID;
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
+    private final AppointmentService appointmentService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, AppointmentService appointmentService) {
         this.userService = userService;
+        this.appointmentService = appointmentService;
     }
 
     @GetMapping
@@ -53,5 +57,10 @@ public class UserController {
 
         return "redirect:/users";
     }
+
+
+
+
+
 
 }

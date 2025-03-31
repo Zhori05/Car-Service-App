@@ -144,6 +144,18 @@ public class MechanicController {
         return modelAndView;
     }
 
+    @GetMapping("/bookedAppointments")
+    public ModelAndView getBookedAppointments(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata){
+        User user = userService.getById(authenticationMetadata.getUserId());
+        List<Appointment> bookedAppointments = appointmentService.getAppointments();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("bookedAppointments");
+        modelAndView.addObject("bookedAppointments", bookedAppointments);
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
 
 
 }
