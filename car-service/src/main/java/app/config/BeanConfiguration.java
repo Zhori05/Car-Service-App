@@ -15,4 +15,10 @@ public class BeanConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+
 }

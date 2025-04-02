@@ -166,18 +166,28 @@
                     <th scope="col">Начало</th>
                     <th scope="col">Край</th>
                     <th scope="col">Допълнителна информация</th>
+                    <th scope="col">Оценка</th>
+                    <th scope="col">Коментар</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="currentAppointment : ${finishedWorkMechanic}">
-                    <th scope="row" th:text="${currentAppointment.id}"></th>
-                    <td class="carOwnerDB" th:text="${currentAppointment.owner.username}"></td>
-                    <td class="carDB"th:text="${currentAppointment.car.model}"></td>
-                    <td class="serviceNameDB" th:text="${currentAppointment.serviceForCar.name}"></td>
-                    <td class="mechanicNameDB" th:text="${currentAppointment.mechanic.username}"></td>
+                    <th scope="row" th:text="${currentAppointment.appointmentId}"></th>
+                    <td class="carOwnerDB" th:text="${currentAppointment.ownerName}"></td>
+                    <td class="carDB"th:text="${currentAppointment.carModel}"></td>
+                    <td class="serviceNameDB" th:text="${currentAppointment.serviceName}"></td>
+                    <td th:text="${currentAppointment.mechanicName}"></td>
                     <td class="dateTimeDB"th:text="${currentAppointment.start}"></td>
                     <td class="endDateTimeDB"th:text="${currentAppointment.finish}"></td>
                     <td class="moreInfoDB"th:text="${currentAppointment.moreInfo}"></td>
+                    <td>
+                        <span th:if="${currentAppointment.rating != null}" th:text="${currentAppointment.rating}"></span>
+                        <span th:unless="${currentAppointment.rating != null}">Няма</span>
+                    </td>
+                    <td>
+                        <span th:if="${currentAppointment.comment != null}" th:text="${currentAppointment.comment}"></span>
+                        <span th:unless="${currentAppointment.comment != null}">Няма</span>
+                    </td>
                 </tr>
                 </tbody>
             </table>

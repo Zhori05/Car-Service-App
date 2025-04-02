@@ -4,14 +4,18 @@ import app.Exception.DomainException;
 import app.appointment.model.Appointment;
 import app.appointment.repository.AppointmentRepository;
 import app.car.model.Car;
+import app.config.BeanConfiguration;
 import app.serviceForCars.model.ServiceForCar;
 import app.user.model.User;
 import app.web.dto.AppointmentRequest;
+import app.web.dto.AppointmentWithFeedbackRequest;
+import app.web.dto.FeedbackResponse;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -19,15 +23,18 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
+    private final BeanConfiguration restTemplate;
 
     @Autowired
-    public AppointmentService(AppointmentRepository appointmentRepository) {
+    public AppointmentService(AppointmentRepository appointmentRepository, BeanConfiguration restTemplate) {
         this.appointmentRepository = appointmentRepository;
+        this.restTemplate = restTemplate;
     }
 
     @Transactional
@@ -179,6 +186,7 @@ public class AppointmentService {
     public List<Appointment> getCompletedAppointmentsByCarId(UUID carId) {
         return appointmentRepository.findCompletedAppointmentsForCar(carId);
     }
+
 
 
 
