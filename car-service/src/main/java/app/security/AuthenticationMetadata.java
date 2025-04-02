@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @Data
 @Getter
 @AllArgsConstructor
-public class AuthenticationMetadata implements UserDetails {
+public class AuthenticationMetadata implements UserDetails, Principal {
 
     private UUID userId;
     private String username;
@@ -37,6 +38,9 @@ public class AuthenticationMetadata implements UserDetails {
 
         return List.of(authority);
     }
+
+
+
 
     @Override
     public String getPassword() {
@@ -66,5 +70,10 @@ public class AuthenticationMetadata implements UserDetails {
     @Override
     public boolean isEnabled() {
         return isActive;
+    }
+
+    @Override
+    public String getName() {
+        return this.username;
     }
 }

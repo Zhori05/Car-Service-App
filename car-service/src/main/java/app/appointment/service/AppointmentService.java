@@ -29,12 +29,12 @@ import java.util.stream.Collectors;
 @Service
 public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
-    private final BeanConfiguration restTemplate;
+
 
     @Autowired
     public AppointmentService(AppointmentRepository appointmentRepository, BeanConfiguration restTemplate) {
         this.appointmentRepository = appointmentRepository;
-        this.restTemplate = restTemplate;
+
     }
 
     @Transactional
