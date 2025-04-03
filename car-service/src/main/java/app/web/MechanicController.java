@@ -3,8 +3,7 @@ package app.web;
 import app.appointment.model.Appointment;
 import app.appointment.service.AppointmentService;
 import app.config.BeanConfiguration;
-import app.mechanic.model.Mechanic;
-import app.mechanic.service.MechanicService;
+
 import app.security.AuthenticationMetadata;
 import app.user.model.User;
 import app.user.service.UserService;
@@ -57,12 +56,13 @@ public class MechanicController {
     @GetMapping("/addMechanic")
     @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getAllUsers(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
-
+        User user = userService.getById(authenticationMetadata.getUserId());
         List<User> addMechanic = userService.getAllBasicUsers();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("addMechanic");
         modelAndView.addObject("addMechanic", addMechanic);
+        modelAndView.addObject("user",user);
 
         return modelAndView;
     }
@@ -84,12 +84,13 @@ public class MechanicController {
     @GetMapping("/allMechanics")
     @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getAllMechanics(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
-
+        User user = userService.getById(authenticationMetadata.getUserId());
         List<User> allMechanics = userService.getAllMechanics();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("allMechanics");
         modelAndView.addObject("allMechanics", allMechanics);
+        modelAndView.addObject("user",user);
 
         return modelAndView;
     }

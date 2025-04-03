@@ -1,7 +1,7 @@
 package app.appointment.model;
 
 import app.car.model.Car;
-import app.mechanic.model.Mechanic;
+
 import app.serviceForCars.model.ServiceForCar;
 import app.user.model.User;
 import jakarta.persistence.*;

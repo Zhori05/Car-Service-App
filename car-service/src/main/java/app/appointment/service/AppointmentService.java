@@ -158,6 +158,10 @@ public class AppointmentService {
         return appointmentRepository.findByMechanicIdAndIsFinishedTrue(mechanicId);
     }
 
+    public List<Appointment> findByIsFinishedTrue() {
+        return appointmentRepository.findByIsFinishedTrue();
+    }
+
 
 
 

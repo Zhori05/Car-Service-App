@@ -29,12 +29,13 @@ public class NotActiveUsersController {
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getNotActiveUsers(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
-
+        User user = userService.getById(authenticationMetadata.getUserId());
         List<User> notActiveUsers = userService.getNotActiveUsers();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("notActiveUsers");
         modelAndView.addObject("notActiveUsers", notActiveUsers);
+        modelAndView.addObject("user",user);
 
         return modelAndView;
     }

@@ -33,12 +33,13 @@ public class UserController {
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getActiveUsers(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
-
+        User user = userService.getById(authenticationMetadata.getUserId());
         List<User> users = userService.getActiveUsers();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("users");
         modelAndView.addObject("users", users);
+        modelAndView.addObject("user",user);
 
         return modelAndView;
     }

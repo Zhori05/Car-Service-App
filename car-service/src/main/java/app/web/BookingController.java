@@ -4,8 +4,7 @@ import app.appointment.model.Appointment;
 import app.appointment.service.AppointmentService;
 import app.car.model.Car;
 import app.car.service.CarService;
-import app.mechanic.model.Mechanic;
-import app.mechanic.service.MechanicService;
+
 import app.security.AuthenticationMetadata;
 import app.serviceForCars.model.ServiceForCar;
 import app.serviceForCars.service.ServiceForCarService;

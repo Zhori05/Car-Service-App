@@ -34,9 +34,10 @@ public class ServiceController {
 
     @GetMapping("/addService")
     public ModelAndView getAddServicePage(@AuthenticationPrincipal AuthenticationMetadata authenticationMetadata) {
+        User user = userService.getById(authenticationMetadata.getUserId());
         ModelAndView modelAndView = new ModelAndView("addService");
         modelAndView.addObject("addServiceRequest", new AddServiceRequest()); // <-- Добавяме празен обект
-
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
     @PostMapping("/addService")

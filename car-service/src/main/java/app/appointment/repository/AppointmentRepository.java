@@ -39,4 +39,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
 
     @Query("SELECT a FROM Appointment a WHERE a.car.id = :carId AND a.isFinished = true")
     List<Appointment> findCompletedAppointmentsForCar(@Param("carId") UUID carId);
+
+    List<Appointment> findByIsFinishedTrue();
 }

@@ -19,116 +19,139 @@
 
 <body>
 <nav class="navbar">
-  <div class="logo">
-    <i class="bx bx-menu" id="sidebarOpen"></i>
-    M Car Service
-  </div>
+    <div class="logo">
+        <i class="bx bx-menu" id="sidebarOpen"></i>
+        M Car Service
+    </div>
 </nav>
 <nav class="sidebar">
-  <div class="mechanic">
-    <p class="mechanicName">
-
-    </p>
-  </div>
-  <div class="menu_content">
-    <ul class="menu_items">
-      <li class="menu_item" style="background-color:white;">
-        <a href="index.html" class="nav_link">
+    <div class="mechanic">
+        <p class="mechanicName"  th:text="${user.username}">
+        </p>
+    </div>
+    <div class="menu_content">
+        <ul class="menu_items">
+            <li class="menu_item" style="background-color:white;">
+                <a href="/" class="nav_link">
             <span class="navlink_icon">
               <i class="bx bx-home"></i>
             </span>
-          <span class="navlink">Начало</span>
-        </a>
-      </li>
-      <li class="menu_item" >
-        <a href="/bookAService" class="nav_link add-appointment-link">
+                    <span class="navlink">Начало</span>
+                </a>
+            </li>
+            <li class="menu_item" >
+                <a href="/bookAService" class="nav_link add-appointment-link">
             <span class="navlink_icon">
               <i class='bx bx-calendar-plus'></i>
             </span>
-          <span class="navlink">Запази час</span>
-        </a>
-      </li>
-      <li class="menu_item"  >
-        <a href="/serviceBook" class="nav_link history-link" >
+                    <span class="navlink">Запази час</span>
+                </a>
+            </li>
+            <li class="menu_item"  >
+                <a href="/serviceBook" class="nav_link history-link" >
             <span class="navlink_icon">
               <i class='bx bx-calendar-check'></i>
             </span>
-          <span class="navlink">Сервизна книжка</span>
-        </a>
-      </li>
+                    <span class="navlink">Сервизна книжка</span>
+                </a>
+            </li>
 
-      <li class="menu_item"  >
-        <a href="#" class="nav_link add-service-link">
+            <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+                <a href="/addService" class="nav_link add-service-link">
             <span class="navlink_icon">
               <i class='bx bx-add-to-queue'></i>
             </span>
-          <span class="navlink">Добавяне на услуга</span>
-        </a>
-      </li>
-      <li class="menu_item"  >
-        <a href="#" class="nav_link all-services-link">
+                    <span class="navlink">Добавяне на услуга</span>
+                </a>
+            </li>
+            <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+                <a href="/allServices" class="nav_link all-services-link">
             <span class="navlink_icon">
               <i class='bx bx-list-ul'></i>
             </span>
-          <span class="navlink">Услуги</span>
-        </a>
-      </li>
-      <li class="menu_item"  >
-        <a href="#" class="nav_link add-mechanic-link">
+                    <span class="navlink">Услуги</span>
+                </a>
+            </li>
+            <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+                <a href="/addMechanic" class="nav_link add-mechanic-link">
             <span class="navlink_icon">
               <i class='bx bx-add-to-queue'></i>
             </span>
-          <span class="navlink">Добави механик</span>
-        </a>
-      </li>
-      <li class="menu_item"  >
-        <a href="#" class="nav_link mechanics-link">
+                    <span class="navlink">Добави механик</span>
+                </a>
+            </li>
+            <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+                <a href="/allMechanics" class="nav_link mechanics-link">
             <span class="navlink_icon">
               <i class='bx bx-wrench'></i>
             </span>
-          <span class="navlink">Механици</span>
-        </a>
-      </li>
-      <li class="menu_item"  >
-        <a href="#" class="nav_link appointments-link">
+                    <span class="navlink">Механици</span>
+                </a>
+            </li>
+            <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+                <a href="/bookedAppointments" class="nav_link appointments-link">
             <span class="navlink_icon">
               <i class='bx bx-calendar'></i>
             </span>
-          <span class="navlink">Записани часове</span>
-        </a>
-      </li>
-      <li class="menu_item"  >
-        <a href="/users" class="nav_link users-link">
+                    <span class="navlink">Записани часове</span>
+                </a>
+            </li>
+            <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+                <a href="/users" class="nav_link users-link">
             <span class="navlink_icon">
             <i class='bx bx-user-circle' ></i>
             </span>
-          <span class="navlink">Потребители</span>
-        </a>
-      </li>
+                    <span class="navlink">Потребители</span>
+                </a>
+            </li>
 
-      <li class="menu_item"  >
-        <a href="#" class="nav_link blockedUsers-link">
+            <li class="menu_item"  th:if="${user.role.name() == 'ADMIN'}">
+                <a href="/notActiveUsers" class="nav_link blockedUsers-link">
             <span class="navlink_icon">
             <i class='bx bx-block'></i>
             </span>
-          <span class="navlink">Блокирани потреб.</span>
-        </a>
-      </li>
+                    <span class="navlink">Не активни потреб.</span>
+                </a>
+            </li>
 
-    </ul>
-    <div class="collapse_content">
-      <div class="collapse expand_sidebar">
-        <span> Разгърни</span>
-        <i class="bx bx-chevron-right"></i>
-      </div>
-      <div class="collapse collapse_sidebar">
-        <span> Свий</span>
-        <i class="bx bx-chevron-left"></i>
-      </div>
+            <li class="menu_item" th:if="${user.role.name() == 'MECHANIC'}">
+                <a href="/todayMechanicWork" class="nav_link day-work-link">
+          <span class="navlink_icon">
+          <i class='bx bx-time' ></i>
+          </span>
+                    <span class="navlink">Работа за деня</span>
+                </a>
+            </li>
+            <li class="menu_item" th:if="${user.role.name() == 'MECHANIC'}">
+                <a href="/weekMechanicWork" class="nav_link week-work-link">
+    <span class="navlink_icon">
+    <i class='bx bx-calendar-week'></i>
+    </span>
+                    <span class="navlink">Работа за седмица</span>
+                </a>
+            </li>
+            <li class="menu_item" th:if="${user.role.name() == 'MECHANIC'}">
+                <a href="/finishedWorkMechanic" class="nav_link services-link">
+        <span class="navlink_icon">
+        <i class='bx bx-calendar-check'></i>
+        </span>
+                    <span class="navlink">Свършена работа</span>
+                </a>
+            </li>
+
+        </ul>
+        <div class="collapse_content">
+            <div class="collapse expand_sidebar">
+                <span> Разгърни</span>
+                <i class="bx bx-chevron-right"></i>
+            </div>
+            <div class="collapse collapse_sidebar">
+                <span> Свий</span>
+                <i class="bx bx-chevron-left"></i>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
-
 <div class="main-content">
 
 

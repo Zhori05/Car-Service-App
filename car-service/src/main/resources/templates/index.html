@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -62,10 +62,16 @@
             </div>
           </div>
         </li>
-        <li><a href="for-us.html">Контакти</a></li>
-        <li>
-          <a href="bookAService.html" class="desktop-item">Твоят профил</a>
-        </li>
+        <ul>
+          <li th:if="${isAuthenticated}">
+            <a th:href="bookAService" class="desktop-item">Твоят профил</a>
+          </li>
+          <li th:unless="${isAuthenticated}">
+            <a href="login.html" class="desktop-item">Влез</a>
+            <a href="register.html" class="desktop-item">Регистрирай се</a>
+          </li>
+        </ul>
+
       </ul>
       <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
     </div>
@@ -176,7 +182,7 @@
   </div>
   <div class = "bottom-footer-container">
     <div class ="bottom-content">
-      <p>&copy All rights reserved 2023.</p>
+      <p>&copy All rights reserved 2025.</p>
     </div>
   </div>
 </footer>

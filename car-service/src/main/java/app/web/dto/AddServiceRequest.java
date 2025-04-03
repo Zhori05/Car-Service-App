@@ -1,6 +1,6 @@
 package app.web.dto;
 
-import app.mechanic.model.Specials;
+
 import app.serviceForCars.model.Special;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

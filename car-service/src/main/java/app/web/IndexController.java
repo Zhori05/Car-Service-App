@@ -1,11 +1,14 @@
 
 package app.web;
 
+import app.car.model.Car;
 import app.car.service.CarService;
 import app.security.AuthenticationMetadata;
+import app.serviceForCars.model.ServiceForCar;
 import app.user.model.User;
 import app.user.service.UserService;
 import app.web.dto.AddCarRequest;
+import app.web.dto.AppointmentRequest;
 import app.web.dto.LoginRequest;
 import app.web.dto.RegisterRequest;
 import jakarta.validation.Valid;
@@ -18,6 +21,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -31,8 +37,8 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String getIndexPage() {
-
+    public String getIndexPage(Model model, @AuthenticationPrincipal AuthenticationMetadata user) {
+        model.addAttribute("isAuthenticated", user != null);
         return "index";
     }
 
@@ -98,5 +104,7 @@ public class IndexController {
 
         return new ModelAndView( );
     }
+
+
 
 }
